@@ -1,30 +1,25 @@
 <script setup>
-import SuccessfulSignUp from "../components/SuccessfulSignUp.vue";
-
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useUserStore } from "../stores/user";
-import { useSignUpSuccessStore } from "../stores/signUpSuccess";
-
-import { ref } from "vue";
+import router from "@/router";
 
 const userStore = useUserStore();
 const { user, globalError } = storeToRefs(userStore);
-const signUpSuccessStore = useSignUpSuccessStore();
-const { signUpSuccess } = storeToRefs(signUpSuccessStore);
 
 const email = ref("");
 const password = ref("");
 let errorMessage = ref("");
 
+console.log(globalError.value);
+
 const onSubmit = () => {
-  //cual seria la manera correcta? recuperar de alguna manera el error y si hay error poner el error o asi
-  //(password.value.length < 6)
+  userStore.signIn(email.value, password.value);
 
   if (globalError.value) {
-    errorMessage = globalError.value.message;
+    errorMessage.value = globalError.value.message;
   } else {
-    userStore.signUp(email.value, password.value);
-    signUpSuccess.value = true;
+    router.push({ name: "dashboard" });
   }
 };
 </script>
@@ -33,13 +28,13 @@ const onSubmit = () => {
   <div
     class="flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 w-1/3 h-screen"
   >
-    <div v-if="!signUpSuccess" class="w-3/4 max-w-md">
+    <div class="w-3/4 max-w-md space-y-12">
       <div>
         <img class="mx-auto h-14 w-auto" src="../assets/user-icon.png" />
         <h2
           class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900"
         >
-          Register
+          Sign in to your account
         </h2>
       </div>
       <form class="mt-8 space-y-12" @submit.prevent="onSubmit" method="POST">
@@ -70,7 +65,7 @@ const onSubmit = () => {
             v-if="errorMessage"
             class="flex items-center justify-center text-sm bg-red-300 mb-6 rounded w-full h-8"
           >
-            {{ errorMessage }}
+            <img src="../assets/ban.svg" class="w-4 mr-2" />{{ errorMessage }}
           </div>
         </div>
 
@@ -79,11 +74,10 @@ const onSubmit = () => {
             type="submit"
             class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-secondary"
           >
-            Sign up
+            Sign in
           </button>
         </div>
       </form>
     </div>
-    <SuccessfulSignUp v-else />
   </div>
 </template>

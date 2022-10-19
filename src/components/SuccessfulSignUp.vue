@@ -13,9 +13,9 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col items-center justify-center">
     <div
-      class="flex items-center justify-center h-64 w-full mb-4 bg-lime-500 rounded"
+      class="flex items-center justify-center h-64 w-64 mb-4 bg-lime-500 rounded-full"
     >
       <img src="../assets/check.svg" class="w-24 filter-white" />
     </div>
