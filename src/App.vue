@@ -1,4 +1,5 @@
 <script setup>
+import Main from "./views/Main.vue";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -26,6 +27,4 @@ const { user } = storeToRefs(userStore);
 
 <template>
   <router-view class="app-main" />
-  <!-- <Authentication /> -->
-  <!-- <EmployeesList /> -->
 </template>

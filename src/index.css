@@ -6,3 +6,12 @@
   filter: invert(95%) sepia(79%) saturate(4%) hue-rotate(193deg)
     brightness(104%) contrast(100%);
 }
+
+.sidebar-item {
+  padding: 8px 30px;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  background-color: rgb(226 232 240);
+}

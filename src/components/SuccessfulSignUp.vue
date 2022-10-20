@@ -20,7 +20,10 @@ const onClick = () => {
       <img src="../assets/check.svg" class="w-24 filter-white" />
     </div>
     <div class="p-6 flex flex-col items-center">
-      <p>Congratulations! Your account has been successfully created.</p>
+      <p>
+        Please check your email to activate your account and then proceed to
+        sign in.
+      </p>
       <button
         @click="onClick"
         class="bg-lime-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8"

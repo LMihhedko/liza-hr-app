@@ -17,9 +17,6 @@ const password = ref("");
 let errorMessage = ref("");
 
 const onSubmit = () => {
-  //cual seria la manera correcta? recuperar de alguna manera el error y si hay error poner el error o asi
-  //(password.value.length < 6)
-
   if (globalError.value) {
     errorMessage = globalError.value.message;
   } else {
@@ -66,6 +63,7 @@ const onSubmit = () => {
               v-model="password"
             />
           </div>
+          <span>Already have an account?</span>
           <div
             v-if="errorMessage"
             class="flex items-center justify-center text-sm bg-red-300 mb-6 rounded w-full h-8"

@@ -15,12 +15,7 @@ console.log(globalError.value);
 
 const onSubmit = () => {
   userStore.signIn(email.value, password.value);
-
-  if (globalError.value) {
-    errorMessage.value = globalError.value.message;
-  } else {
-    router.push({ name: "dashboard" });
-  }
+  router.push({ name: "dashboard" });
 };
 </script>
 
@@ -61,6 +56,9 @@ const onSubmit = () => {
               v-model="password"
             />
           </div>
+          <a href="" class="w-full text-right"
+            >Don't have an account? Register here</a
+          >
           <div
             v-if="errorMessage"
             class="flex items-center justify-center text-sm bg-red-300 mb-6 rounded w-full h-8"
