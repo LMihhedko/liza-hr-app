@@ -138,7 +138,7 @@ const addEmployee = (
             works_remote
           )
         "
-        class="group w-24 relative flex justify-center rounded-md border border-transparent bg-cyan-400 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
+        class="group w-24 relative flex justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
       >
         Add employee
       </button>
