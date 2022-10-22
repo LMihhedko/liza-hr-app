@@ -4,7 +4,6 @@ import { supabase } from "../supabase";
 export const useUserStore = defineStore("user", {
   state: () => ({
     user: null,
-    globalError: null,
   }),
 
   actions: {
@@ -27,16 +26,13 @@ export const useUserStore = defineStore("user", {
         email: email,
         password: password,
       });
-      if (error) {
-        this.globalError = error;
-      }
+      if (error) throw error;
       if (user) this.user = user;
     },
     async signOut() {
       const { error } = await supabase.auth.signOut();
-      if (error) {
-        this.globalError = error;
-      }
+      this.user = "";
+      if (error) throw error;
     },
   },
   persist: {

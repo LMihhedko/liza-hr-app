@@ -5,13 +5,11 @@ import { useUserStore } from "../stores/user";
 import router from "@/router";
 
 const userStore = useUserStore();
-const { user, globalError } = storeToRefs(userStore);
+const { user } = storeToRefs(userStore);
 
 const email = ref("");
 const password = ref("");
 let errorMessage = ref("");
-
-console.log(globalError.value);
 
 const onSubmit = () => {
   userStore.signIn(email.value, password.value);
@@ -21,9 +19,12 @@ const onSubmit = () => {
 
 <template>
   <div
-    class="flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 w-1/3 h-screen"
+    class="flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 w-screen h-screen"
   >
-    <div class="w-3/4 max-w-md space-y-12">
+    <div class="w-2/3 h-screen flex items-center justify-center">
+      <img src="../assets/auth-image.jpg" />
+    </div>
+    <div class="w-1/3 max-w-md space-y-12 px-20">
       <div>
         <img class="mx-auto h-14 w-auto" src="../assets/user-icon.png" />
         <h2
@@ -56,8 +57,8 @@ const onSubmit = () => {
               v-model="password"
             />
           </div>
-          <a href="" class="w-full text-right"
-            >Don't have an account? Register here</a
+          <RouterLink class="w-full font-medium text-primary" to="/signup"
+            >Don't have an account? Register here</RouterLink
           >
           <div
             v-if="errorMessage"

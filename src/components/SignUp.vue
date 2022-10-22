@@ -8,7 +8,7 @@ import { useSignUpSuccessStore } from "../stores/signUpSuccess";
 import { ref } from "vue";
 
 const userStore = useUserStore();
-const { user, globalError } = storeToRefs(userStore);
+const { user } = storeToRefs(userStore);
 const signUpSuccessStore = useSignUpSuccessStore();
 const { signUpSuccess } = storeToRefs(signUpSuccessStore);
 
@@ -17,20 +17,19 @@ const password = ref("");
 let errorMessage = ref("");
 
 const onSubmit = () => {
-  if (globalError.value) {
-    errorMessage = globalError.value.message;
-  } else {
-    userStore.signUp(email.value, password.value);
-    signUpSuccess.value = true;
-  }
+  userStore.signUp(email.value, password.value);
+  signUpSuccess.value = true;
 };
 </script>
 
 <template>
   <div
-    class="flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 w-1/3 h-screen"
+    class="flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8 w-screen h-screen"
   >
-    <div v-if="!signUpSuccess" class="w-3/4 max-w-md">
+    <div class="w-2/3 h-screen flex items-center justify-center">
+      <img src="../assets/auth-image.jpg" />
+    </div>
+    <div v-if="!signUpSuccess" class="w-1/3 max-w-md px-20">
       <div>
         <img class="mx-auto h-14 w-auto" src="../assets/user-icon.png" />
         <h2
@@ -63,7 +62,9 @@ const onSubmit = () => {
               v-model="password"
             />
           </div>
-          <span>Already have an account?</span>
+          <RouterLink class="w-full font-medium text-primary" to="/signin"
+            >Already have an account?</RouterLink
+          >
           <div
             v-if="errorMessage"
             class="flex items-center justify-center text-sm bg-red-300 mb-6 rounded w-full h-8"
@@ -77,7 +78,7 @@ const onSubmit = () => {
             type="submit"
             class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-secondary"
           >
-            Sign up
+            Sign Up
           </button>
         </div>
       </form>

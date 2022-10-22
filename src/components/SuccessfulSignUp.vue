@@ -7,8 +7,7 @@ const signUpSuccessStore = useSignUpSuccessStore();
 const { signUpSuccess } = storeToRefs(signUpSuccessStore);
 
 const onClick = () => {
-  signUpSuccess.value = false;
-  router.push({ name: "authentication" });
+  router.push({ name: "signin" });
 };
 </script>
 

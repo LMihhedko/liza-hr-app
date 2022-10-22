@@ -16,11 +16,8 @@ console.log(user.value);
 </script>
 
 <template>
-  <div class="flex">
-    <div class="w-2/3 h-screen flex items-center justify-center">
-      <img src="../assets/auth-image.jpg" />
-    </div>
-    <SignIn v-if="user && !signUpSuccess" />
-    <SignUp v-else />
-  </div>
+  <img src="../assets/welcome-logo.png" class="w-1/6" />
+  <div>Welcome to Dunder Mifflin HR app</div>
+  <RouterLink to="/signup">Register</RouterLink>
+  <RouterLink to="/signin">SignIn</RouterLink>
 </template>
