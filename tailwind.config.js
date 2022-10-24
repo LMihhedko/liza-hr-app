@@ -7,6 +7,12 @@ module.exports = {
       colors: {
         primary: "#2b468b",
         secondary: "#7499f1",
+        darkblue: "#233863",
+        darkgreen: "#599cad",
+        lightgreen: "#86d1cd",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
       },
     },
   },

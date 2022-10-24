@@ -3,6 +3,7 @@ import NewEmployee from "../components/NewEmployee.vue";
 
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
+import { computed } from "vue";
 import { useEmployeesStore } from "../stores/employees";
 import { useNewEmployeeFormStore } from "../stores/newEmployeeForm";
 
@@ -11,13 +12,7 @@ const { newEmployeeForm } = storeToRefs(newEmployeeFormStore);
 
 const employeesStore = useEmployeesStore();
 const { employees } = storeToRefs(employeesStore);
-
-const fetchEmployees = async () => {
-  await employeesStore.fetchEmployees();
-  console.log(employees.value);
-};
-
-fetchEmployees();
+employeesStore.fetchEmployees();
 
 const deleteEmployee = (id) => {
   employeesStore.deleteEmployee(id);
@@ -67,8 +62,9 @@ const addEmployee = () => {
         Add new employee
       </button>
     </div>
-    <div class="flex justify-center items-center">
-      <div class="flex flex-col bg-primary w-full">
+    <div class="flex flex-col justify-center items-center">
+      <NewEmployee v-if="newEmployeeForm" />
+      <div class="flex flex-col bg-primary w-full rounded-md">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
@@ -125,15 +121,14 @@ const addEmployee = () => {
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-white px-6 text-left"
+                      class="text-sm font-medium text-white text-left"
                     ></th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-white px-6 py-4 text-left"
+                      class="text-sm font-medium text-white text-left"
                     ></th>
                   </tr>
                 </thead>
-                <NewEmployee v-if="newEmployeeForm" />
                 <tbody v-for="employee in employees">
                   <tr
                     v-if="employee.id !== editingId"
@@ -182,14 +177,10 @@ const addEmployee = () => {
                         class="w-6"
                         src="../assets/simple_check.svg"
                       />
-                      <img
-                        v-if="!employee.works_remote"
-                        class="w-4"
-                        src="../assets/cross.svg"
-                      />
+                      <img v-else class="w-4" src="../assets/cross.svg" />
                     </td>
                     <td
-                      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      class="text-sm text-gray-900 font-light whitespace-nowrap"
                     >
                       <button
                         @click="editEmployee(employee.id)"
@@ -199,7 +190,7 @@ const addEmployee = () => {
                       </button>
                     </td>
                     <td
-                      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      class="text-sm text-gray-900 font-light whitespace-nowrap"
                     >
                       <button
                         @click="deleteEmployee(employee.id)"
@@ -293,7 +284,7 @@ const addEmployee = () => {
                       />
                     </td>
                     <td
-                      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      class="text-sm text-gray-900 font-light whitespace-nowrap"
                     >
                       <button
                         @click="
@@ -308,13 +299,13 @@ const addEmployee = () => {
                             employee.works_remote
                           )
                         "
-                        class="group relative flex justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
+                        class="group relative flex justify-center rounded-md border border-transparent mr-2 bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
                       >
                         Save
                       </button>
                     </td>
                     <td
-                      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      class="text-sm text-gray-900 font-light whitespace-nowrap"
                     >
                       <button
                         @click="deleteEmployee(employee.id)"

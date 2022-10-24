@@ -8,7 +8,7 @@ const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 const SignOut = () => {
-  userStore.signOut;
+  userStore.signOut();
   router.push({ name: "authentication" });
 };
 </script>

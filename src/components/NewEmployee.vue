@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useEmployeesStore } from "../stores/employees";
 import { useUserStore } from "../stores/user";
 import { useNewEmployeeFormStore } from "../stores/newEmployeeForm";
+
+const router = useRouter();
 
 const newEmployeeFormStore = useNewEmployeeFormStore();
 const { newEmployeeForm } = storeToRefs(newEmployeeFormStore);
@@ -47,104 +50,149 @@ const addEmployee = (
   employeesStore.fetchEmployees();
   newEmployeeForm.value = false;
 };
+
+const closeModal = () => {
+  newEmployeeForm.value = false;
+};
 </script>
 
 <template>
-  <tr class="bg-white border-b">
-    <td
-      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-    ></td>
+  <div
+    class="relative z-10"
+    aria-labelledby="modal-title"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+    ></div>
 
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="name"
-        type="text"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Name"
-        v-model="name"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="last_name"
-        type="text"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Last Name"
-        v-model="last_name"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="department"
-        type="text"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Department"
-        v-model="department"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="address"
-        type="text"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Address"
-        v-model="address"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="email"
-        type="email"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Email"
-        v-model="email"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="phone"
-        type="phone"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Phone"
-        v-model="phone"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <input
-        name="works_remote"
-        type="text"
-        required
-        class="mb-4 w-24 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-        placeholder="Works Remote"
-        v-model="works_remote"
-      />
-    </td>
-    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-      <button
-        @click="
-          addEmployee(
-            name,
-            last_name,
-            department,
-            address,
-            email,
-            phone,
-            works_remote
-          )
-        "
-        class="group w-24 relative flex justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div
+        class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
       >
-        Add employee
-      </button>
-    </td>
-    <td
-      class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-    ></td>
-  </tr>
+        <div
+          class="relative transform overflow-hidden p-16 rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl"
+        >
+          <div class="flex flex-wrap">
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Name</label
+              >
+              <input
+                name="name"
+                type="text"
+                required
+                class="block mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Name"
+                v-model="name"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Last Name</label
+              >
+              <input
+                name="last_name"
+                type="text"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Last Name"
+                v-model="last_name"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Department</label
+              >
+              <input
+                name="department"
+                type="text"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Department"
+                v-model="department"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Address</label
+              >
+              <input
+                name="address"
+                type="text"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Address"
+                v-model="address"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Email</label
+              >
+              <input
+                name="email"
+                type="email"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Email"
+                v-model="email"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Phone</label
+              >
+              <input
+                name="phone"
+                type="phone"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Phone"
+                v-model="phone"
+              />
+            </div>
+            <div class="w-1/2">
+              <label class="block tracking-wide text-gray-700 font-bold mb-0.5"
+                >Works Remote</label
+              >
+              <input
+                name="works_remote"
+                type="text"
+                required
+                class="mb-4 w-5/6 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Works Remote"
+                v-model="works_remote"
+              />
+            </div>
+          </div>
+          <div class="flex justify-center items-center mt-6">
+            <button
+              @click="
+                addEmployee(
+                  name,
+                  last_name,
+                  department,
+                  address,
+                  email,
+                  phone,
+                  works_remote
+                )
+              "
+              class="group mr-6 relative flex justify-center rounded-md border border-transparent bg-orange-500 py-2 px-4 text-sm font-medium text-white hover:bg-orange-300"
+            >
+              Add employee
+            </button>
+            <button
+              @click="closeModal"
+              class="group relative flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white hover:bg-red-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
