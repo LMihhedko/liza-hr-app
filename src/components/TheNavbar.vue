@@ -14,16 +14,16 @@ const SignOut = () => {
 </script>
 
 <template>
-  <div>
-    <div class="h-16 flex justify-end items-center mr-8">
-      <img src="../assets/bell.svg" class="w-6 mr-6" />
-      <p class="mr-8">{{ user.email }}</p>
-      <button
-        @click="SignOut"
-        class="group relative flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-secondary"
-      >
-        Sign Out
-      </button>
-    </div>
+  <div class="h-16 flex justify-end items-center bg-gray-400 w-full text-white">
+    <img src="../assets/bell.svg" class="w-6" />
+    <p class="mx-6">|</p>
+    <p class="mr-8">{{ user.email }}</p>
+
+    <button
+      @click="SignOut"
+      class="group relative flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-secondary mr-8"
+    >
+      Sign Out
+    </button>
   </div>
 </template>

@@ -8,7 +8,7 @@ import NewEmployee from "../components/NewEmployee.vue";
 <template>
   <div class="container mx-auto flex">
     <TheSidebar />
-    <div class="flex-col w-full">
+    <div class="flex-col w-full bg-slate-200">
       <TheNavbar />
       <EmployeeItem />
     </div>

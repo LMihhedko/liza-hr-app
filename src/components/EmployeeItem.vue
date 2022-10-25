@@ -53,7 +53,7 @@ const addEmployee = () => {
 </script>
 
 <template>
-  <div class="flex flex-col bg-slate-200 w-full h-screen py-12 px-12">
+  <div class="flex flex-col w-full px-12">
     <div class="flex justify-end my-6 mr-6">
       <button
         @click="addEmployee"

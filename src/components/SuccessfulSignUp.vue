@@ -12,20 +12,20 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center">
+  <div class="flex flex-col items-center justify-center bg-primary w-1/3">
     <div
-      class="flex items-center justify-center h-64 w-64 mb-4 bg-lime-500 rounded-full"
+      class="flex items-center justify-center h-64 w-64 mb-4 bg-lightgreen rounded-full"
     >
       <img src="../assets/check.svg" class="w-24 filter-white" />
     </div>
     <div class="p-6 flex flex-col items-center">
-      <p>
+      <p class="text-white">
         Please check your email to activate your account and then proceed to
         sign in.
       </p>
       <button
         @click="onClick"
-        class="bg-lime-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8"
+        class="bg-lightgreen hover:bg-darkgreen text-white font-bold py-2 px-4 rounded mt-8"
       >
         Sign in
       </button>
