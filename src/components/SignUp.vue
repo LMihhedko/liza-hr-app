@@ -31,7 +31,7 @@ const onSubmit = async () => {
   <div class="flex w-screen h-screen">
     <div
       v-if="!signUpSuccess"
-      class="w-1/3 h-screen max-w-md space-y-12 p-20 bg-primary"
+      class="w-1/3 h-screen max-w-md space-y-12 p-20 bg-primary sm:w-screen"
     >
       <img class="w-20" src="../assets/company-logo-white.png" />
       <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-white">

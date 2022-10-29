@@ -13,7 +13,7 @@ const onClick = () => {
 
 <template>
   <div
-    class="flex flex-col items-center justify-center bg-primary w-1/3 p-20 max-w-md"
+    class="flex flex-col items-center justify-center bg-primary w-1/3 p-20 max-w-md sm:w-screen"
   >
     <p class="text-white text-justify mb-8">
       Please check your email to activate your account and then proceed to sign

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="h-screen p-20">
+  <div class="h-screen p-20 sm:hidden">
     <div
       class="text-primary flex flex-col items-start justify-center font-roboto"
     >

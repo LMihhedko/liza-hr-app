@@ -3,6 +3,7 @@ import NewEmployee from "../components/NewEmployee.vue";
 
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
+
 import { useEmployeesStore } from "../stores/employees";
 import { useNewEmployeeFormStore } from "../stores/newEmployeeForm";
 
@@ -52,7 +53,7 @@ const addEmployee = () => {
 </script>
 
 <template>
-  <div class="flex flex-col w-full px-12">
+  <div class="flex flex-col w-full px-12 sm:px-0">
     <div class="flex justify-end my-6 mr-6">
       <button
         @click="addEmployee"
@@ -63,19 +64,13 @@ const addEmployee = () => {
     </div>
     <div class="flex flex-col justify-center items-center">
       <NewEmployee v-if="newEmployeeForm" />
-      <div class="flex flex-col bg-primary w-full rounded-md">
+      <div class="flex flex-col bg-primary w-full rounded-md sm:hidden">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
               <table class="min-w-full">
                 <thead class="border-b">
                   <tr>
-                    <th
-                      scope="col"
-                      class="text-sm font-medium text-white px-6 py-4 text-left"
-                    >
-                      #
-                    </th>
                     <th
                       scope="col"
                       class="text-sm font-medium text-white px-6 py-4 text-left"
@@ -133,11 +128,6 @@ const addEmployee = () => {
                     v-if="employee.id !== editingId"
                     class="bg-white border-b"
                   >
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      {{ employee.id }}
-                    </td>
                     <td
                       class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                     >
@@ -200,11 +190,6 @@ const addEmployee = () => {
                     </td>
                   </tr>
                   <tr v-if="employee.id == editingId" class="bg-white border-b">
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      {{ employee.id }}
-                    </td>
                     <td
                       class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                     >
@@ -317,6 +302,26 @@ const addEmployee = () => {
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="sm:grid grid-cols-1 gap-4 hidden w-10/12">
+        <div v-for="employee in employees" class="bg-white p-4 rounded shadow">
+          <div class="font-bold bg-secondary p-2 rounded mb-1">
+            {{ employee.name }}
+            {{ employee.last_name }}
+          </div>
+          <div>
+            {{ employee.department }}
+          </div>
+          <div>
+            {{ employee.address }}
+          </div>
+          <div>{{ employee.email }}</div>
+          <div>{{ employee.phone }}</div>
+          <div>
+            Works remote -
+            {{ employee.works_remote }}
           </div>
         </div>
       </div>
