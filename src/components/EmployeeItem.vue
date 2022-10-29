@@ -307,21 +307,106 @@ const addEmployee = () => {
       </div>
       <div class="sm:grid grid-cols-1 gap-4 hidden w-10/12">
         <div v-for="employee in employees" class="bg-white p-4 rounded shadow">
-          <div class="font-bold bg-secondary p-2 rounded mb-1">
-            {{ employee.name }}
-            {{ employee.last_name }}
+          <div v-if="employee.id !== editingId">
+            <div
+              class="font-bold bg-secondary p-2 rounded mb-1 flex justify-between"
+            >
+              {{ employee.name }}
+              {{ employee.last_name }}
+              <div class="flex">
+                <img
+                  src="../assets/pencil.svg"
+                  class="filter-white w-6 mr-2"
+                  @click="editEmployee(employee.id)"
+                />
+                <img
+                  src="../assets/trash.svg"
+                  class="filter-white w-5"
+                  @click="deleteEmployee(employee.id)"
+                />
+              </div>
+            </div>
+            <div>
+              {{ employee.department }}
+            </div>
+            <div>
+              {{ employee.address }}
+            </div>
+            <div>{{ employee.email }}</div>
+            <div>{{ employee.phone }}</div>
+            <div>
+              Works remote -
+              {{ employee.works_remote }}
+            </div>
           </div>
-          <div>
-            {{ employee.department }}
-          </div>
-          <div>
-            {{ employee.address }}
-          </div>
-          <div>{{ employee.email }}</div>
-          <div>{{ employee.phone }}</div>
-          <div>
-            Works remote -
-            {{ employee.works_remote }}
+          <div v-if="employee.id == editingId" class="bg-white border-b">
+            <div class="flex justify-end mb-4">
+              <img
+                src="../assets/save.svg"
+                class="w-5"
+                @click="
+                  updateEmployee(
+                    employee.id,
+                    employee.name,
+                    employee.last_name,
+                    employee.department,
+                    employee.address,
+                    employee.email,
+                    employee.phone,
+                    employee.works_remote
+                  )
+                "
+              />
+            </div>
+            <input
+              name="name"
+              type="text"
+              v-model="employee.name"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="last_name"
+              type="text"
+              v-model="employee.last_name"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="department"
+              type="text"
+              v-model="employee.department"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="address"
+              type="text"
+              v-model="employee.address"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="email"
+              type="email"
+              v-model="employee.email"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="phone"
+              type="phone"
+              v-model="employee.phone"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
+            <input
+              name="works_remote"
+              type="text"
+              v-model="employee.works_remote"
+              required
+              class="w-full mb-4 rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useEmployeesStore } from "../stores/employees";
 import { useUserStore } from "../stores/user";
@@ -44,8 +43,8 @@ const addEmployee = (
     phone,
     works_remote
   );
-  employeesStore.fetchEmployees();
   newEmployeeForm.value = false;
+  employeesStore.fetchEmployees();
 };
 
 const closeModal = () => {
@@ -69,7 +68,7 @@ const closeModal = () => {
         class="flex min-h-full items-end justify-center p-4 sm:items-center sm:p-0"
       >
         <div
-          class="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:max-w-3xl w-7/12"
+          class="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all sm:my-8 sm:w-full w-7/12"
         >
           <div class="w-full flex justify-end p-3 bg-primary">
             <button
