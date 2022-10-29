@@ -14,8 +14,8 @@ const SignOut = () => {
 </script>
 
 <template>
-  <div class="h-16 flex justify-end items-center bg-gray-400 w-full text-white">
-    <img src="../assets/bell.svg" class="w-6" />
+  <div class="h-16 flex justify-end items-center bg-gray-500 w-full text-white">
+    <img src="../assets/bell.svg" class="w-6 filter-white" />
     <p class="mx-6">|</p>
     <p class="mr-8">{{ user.email }}</p>
 

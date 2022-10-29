@@ -6,8 +6,6 @@ import { useEmployeesStore } from "../stores/employees";
 import { useUserStore } from "../stores/user";
 import { useNewEmployeeFormStore } from "../stores/newEmployeeForm";
 
-const router = useRouter();
-
 const newEmployeeFormStore = useNewEmployeeFormStore();
 const { newEmployeeForm } = storeToRefs(newEmployeeFormStore);
 
@@ -46,7 +44,6 @@ const addEmployee = (
     phone,
     works_remote
   );
-  console.log(works_remote);
   employeesStore.fetchEmployees();
   newEmployeeForm.value = false;
 };

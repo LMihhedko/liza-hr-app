@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="flex flex-col h-screen bg-gray-400">
+  <div class="flex flex-col h-screen bg-gray-500">
     <img class="h-16 mb-6" src="../assets/company-logo.png" />
     <div class="sidebar-item flex text-white font-roboto font-semibold">
       <img
