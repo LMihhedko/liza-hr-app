@@ -9,12 +9,10 @@ const newEmployeeFormStore = useNewEmployeeFormStore();
 const { newEmployeeForm } = storeToRefs(newEmployeeFormStore);
 
 const employeesStore = useEmployeesStore();
-const { employees } = storeToRefs(employeesStore);
 
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
-console.log(user.value.id);
 const user_id = ref(user.value.id);
 const name = ref("");
 const last_name = ref("");
