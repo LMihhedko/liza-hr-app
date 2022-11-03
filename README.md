@@ -13,6 +13,8 @@ This app is also available on mobile version. :iphone:
 
 In the future I would like to implement more sections such as "My Account", "Calendar", "Analytics" so the app has more functionalities. 
 
+:eyes:	View a live deployed version of the app [HERE](https://hr-app-liza.netlify.app/) :eyes:	
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
