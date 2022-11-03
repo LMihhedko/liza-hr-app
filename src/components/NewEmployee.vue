@@ -22,7 +22,7 @@ const email = ref("");
 const phone = ref("");
 const works_remote = ref("false");
 
-const addEmployee = (
+const addEmployee = async (
   name,
   last_name,
   department,
@@ -31,7 +31,7 @@ const addEmployee = (
   phone,
   works_remote
 ) => {
-  employeesStore.addEmployee(
+  await employeesStore.addEmployee(
     user_id.value,
     name,
     last_name,
